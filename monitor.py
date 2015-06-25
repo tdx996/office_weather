@@ -34,17 +34,19 @@ def hd(d):
 def now():
     return int(time.time())
 
-def publish(client, co2, tmp):
+def publish(client, prefix, co2, tmp):
     try:
-        client.submit("office.floor3.co2", co2)
-        client.submit("office.floor3.tmp", tmp)
+        client.submit(prefix + ".co2", co2)
+        client.submit(prefix + ".tmp", tmp)
     except:
         print "Unexpected error:", sys.exc_info()[0]
 
-def client():
+def config():
     with open("config.yaml", 'r') as stream:
-        config = yaml.load(stream)
-        return librato.connect(config["user"], config["token"])
+        return yaml.load(stream)
+
+def client(config):
+    return librato.connect(config["user"], config["token"])
 
 
 if __name__ == "__main__":
@@ -56,7 +58,8 @@ if __name__ == "__main__":
     
     values = {}
     stamp = now()
-    client = client()
+    config = config()
+    client = client(config)
 
     while True:
         data = list(ord(e) for e in fp.read(8))
@@ -74,5 +77,5 @@ if __name__ == "__main__":
                 print "CO2: %4i TMP: %3.1f" % (co2, tmp)
                 if now() - stamp > 5:
                     print ">>>"
-                    publish(client, co2, tmp) 
+                    publish(client, config["prefix"], co2, tmp) 
                     stamp = now()
