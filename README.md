@@ -11,6 +11,7 @@ sudo pip install pyyaml
 ```
 user: tim.lossen@wooga.net
 token: abc123...
+prefix: office.floor3
 ```
 
 3) fix socket permissions
