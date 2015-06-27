@@ -1,5 +1,7 @@
 # installation
 
+0) download the [Raspbian](https://www.raspberrypi.org/downloads/) and install it on the microSD
+
 1) install python libs
 ```
 sudo apt-get install python-pip
@@ -23,10 +25,3 @@ sudo chmod a+rw /dev/hidraw0
 ```
 ./monitor.py /dev/hidraw0
 ```
-
-
-
-
- 
-
-
