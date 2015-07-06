@@ -1,10 +1,16 @@
-# hardware
+# requirements 
+
+## hardware
 
 1) [TFA-Dostmann AirControl Mini CO2 Messgerät](http://www.amazon.de/dp/B00TH3OW4Q) -- 80 euro
 
 2) [Raspberry PI 2 Model B](http://www.amazon.de/dp/B00T2U7R7I) -- 40 euro
 
 3) case, 5v power supply, microSD card
+
+## software
+
+1) [Librato](https://www.librato.com) account for posting the data to.
 
 # installation
 
@@ -17,12 +23,14 @@ sudo pip install librato-metrics
 sudo pip install pyyaml
 ```
 
-2) create `config.yaml` with libratro credentials:
+2) create `config.yaml` with [libratro](https://www.librato.com) credentials:
 ```
 user: tim.lossen@wooga.net
 token: abc123...
 prefix: office.floor3
 ```
+
+We use [librato](https://www.librato.com) to graph our weather, so you'll need to modify that if you using another service.
 
 3) fix socket permissions
 ```
