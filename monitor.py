@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# based on code by henryk ploetz
+# https://hackaday.io/project/5301-reverse-engineering-a-low-cost-usb-co-monitor/log/17909-all-your-base-are-belong-to-us
+
 import sys, fcntl, time, librato, yaml
 
 def decrypt(key,  data):
