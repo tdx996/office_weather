@@ -1,6 +1,14 @@
+# hardware
+
+1) [TFA-Dostmann AirControl Mini CO2 Messgerät](http://www.amazon.de/dp/B00TH3OW4Q) -- 80 euro
+
+2) [Raspberry PI 2 Model B](http://www.amazon.de/dp/B00T2U7R7I) -- 40 euro
+
+3) case, 5v power supply, microSD card
+
 # installation
 
-0) download the [Raspbian](https://www.raspberrypi.org/downloads/) and install it on the microSD
+0) download [Raspbian](https://www.raspberrypi.org/downloads/) and install it on the microSD
 
 1) install python libs
 ```
