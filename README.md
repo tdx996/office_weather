@@ -1,3 +1,11 @@
+# what & why?
+
+Measuring Co2 and Temperature at [Woogas office](http://www.wooga.com/jobs/office-tour/).
+
+People are sensitive to high levels of Co2 or uncomfortably hot work environments, so we want to 
+have some numbers. It turns out that our [office](https://metrics.librato.com/share/dashboards/l7pd2aia) does
+vary in temperature and Co2 across the floors.
+
 # requirements 
 
 ## hardware
