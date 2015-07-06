@@ -2,11 +2,11 @@
 
 Measuring Co2 and Temperature at [Woogas office](http://www.wooga.com/jobs/office-tour/).
 
-People are sensitive to high levels of Co2 or uncomfortably hot work environments, so we want to 
+People are sensitive to high levels of Co2 or uncomfortably hot work environments, so we want to
 have some numbers. It turns out that our [office](https://metrics.librato.com/share/dashboards/l7pd2aia) does
 vary in temperature and Co2 across the floors.
 
-# requirements 
+# requirements
 
 ## hardware
 
@@ -20,9 +20,11 @@ vary in temperature and Co2 across the floors.
 
 1) [Librato](https://www.librato.com) account for posting the data to.
 
-# installation
+2) download [Raspbian](https://www.raspberrypi.org/downloads/) and [install it on the microSD](https://www.raspberrypi.org/documentation/installation/installing-images/README.md). We used [this version](https://github.com/wooga/office_weather/blob/0da94b4255494ecbcf993ec592988503c6c72629/.gitignore#L2) of raspbian.
 
-0) download [Raspbian](https://www.raspberrypi.org/downloads/) and install it on the microSD
+# installation on the raspberry
+
+0) Boot the raspberry with the raspbian. You'll need a USB-keyboard, monitor and ethernet for this initial boot. After overcoming the initial configuration screen, you can login into the box using ssh.
 
 1) install python libs
 ```
@@ -33,7 +35,7 @@ sudo pip install pyyaml
 
 2) create `config.yaml` with [libratro](https://www.librato.com) credentials:
 ```
-user: tim.lossen@wooga.net
+user: your.librato.user.name@some.email.com
 token: abc123...
 prefix: office.floor3
 ```
