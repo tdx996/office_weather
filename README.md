@@ -68,10 +68,12 @@ Pi:
 
 ```
 SHELL=/bin/bash
-* * * * * if ( ! pidof python ) ; then /usr/bin/python /home/pi/monitor.py /dev/hidraw0 > /dev/null 2>&1 ; fi
+* * * * * /usr/bin/python /home/pi/monitor.py /dev/hidraw0 [ **optional:** /home/pi/my_config.yaml ]  > /dev/null 2>&1
 ```
 
-This assumes that only one python is running on the box...
+The script will default to using "config.yaml" (residing in the same directory as the
+monitor.py script - /home/pi in the example) for the librato credentials.
+You can optionally override this by passing a custom configuration file path as a second parameter.
 
 # credits
 
