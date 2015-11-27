@@ -28,7 +28,7 @@ vary in temperature and Co2 across the floors.
 
 1) install python libs
 ```
-sudo apt-get install python-pip
+sudo apt-get install python-pip python-dev libyaml-dev
 sudo pip install librato-metrics
 sudo pip install pyyaml
 ```
