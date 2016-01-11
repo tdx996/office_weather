@@ -5,6 +5,15 @@
 
 import os, sys, fcntl, time, librato, yaml, socket
 
+import requests
+
+def callback_function(error, result):
+    if error:
+        print(error)
+        return
+
+    print(result)
+
 def decrypt(key,  data):
     cstate = [0x48,  0x74,  0x65,  0x6D,  0x70,  0x39,  0x39,  0x65]
     shuffle = [2, 4, 0, 7, 1, 6, 5, 3]
@@ -36,6 +45,29 @@ def hd(d):
 
 def now():
     return int(time.time())
+
+def notifySlack(co2, config, upper_threshold):
+    if ((not config) or (not "webhook" in config)):
+        return
+    webhookUrl = config["webhook"]
+    channel = config["channel"] if "channel" in config else "#general"
+    botName = config["botname"] if "botname" in config else "CO2bot"
+    icon = config["icon"] if "icon" in config else ":robot_face:"
+
+    if (co2 > upper_threshold):
+        message = "Dude, you should open a window. We have *%dppm* in here." % co2
+    else:
+        message = "Ok, you can close the window now. We're down to *%dppm*." % co2
+    try:
+        payload = {
+            'channel': channel,
+            'username': botName,
+            'text': message,
+            'icon_emoji': icon
+        }
+        requests.post(webhookUrl, json=payload)
+    except:
+        print "Unexpected error:", sys.exc_info()[0]
 
 def publish(client, prefix, co2, tmp):
     try:
@@ -79,6 +111,7 @@ if __name__ == "__main__":
 
     values = {}
     stamp = now()
+    notified = False
 
     try:
         config = config(config_file=sys.argv[2])
@@ -100,8 +133,27 @@ if __name__ == "__main__":
             if (0x50 in values) and (0x42 in values):
                 co2 = values[0x50]
                 tmp = (values[0x42]/16.0-273.15)
+
+                # check if it's a sensible value
+                # (i.e. within the measuring range plus some margin)
+                if (co2 > 5000 or co2 < 0):
+                    continue
+
                 print "CO2: %4i TMP: %3.1f" % (co2, tmp)
                 if now() - stamp > 5:
                     print ">>>"
                     publish(client, config["prefix"], co2, tmp)
+
+                    # publish to slack, if configured
+                    if ("slack" in config):
+                        upper_threshold = config["slack"]["upper_threshold"] if "upper_threshold" in config["slack"] else 800
+                        lower_threshold = config["slack"]["lower_threshold"] if "lower_threshold" in config["slack"] else 600
+                        if (co2 > upper_threshold) and (not notified):
+                            notified = True
+                            notifySlack(co2, config["slack"], upper_threshold)
+                        elif (co2 < lower_threshold):
+                            if (notified):
+                                notifySlack(co2, config["slack"], upper_threshold)
+                            notified = False
+
                     stamp = now()

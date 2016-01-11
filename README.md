@@ -42,6 +42,19 @@ prefix: office.floor3
 
 We use [librato](https://www.librato.com) to graph our weather, so you'll need to modify that if you using another service.
 
+2b) (optional) You can configure this bot to automatically post to a Slack channel.
+Just add an "Incoming Webhook" to your Slack team's integrations and add a `slack` hash to the config file.
+
+```yaml
+slack:
+    webhook: 'https://hooks.slack.com/services/TXXXXXX/XXXXXX/xxxxxxx'
+    channel: '#general'   # optional - this is the default value
+    botname: 'CO2bot'     # optional - this is the default value
+    icon: ':monkey_face:' # optional - this is the default value
+    upper_threshold: 800  # optional - this is the default value
+    lower_threshold: 600  # optional - this is the default value
+```
+
 3) fix socket permissions
 ```
 sudo chmod a+rw /dev/hidraw0
