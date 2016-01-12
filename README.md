@@ -31,6 +31,7 @@ vary in temperature and Co2 across the floors.
 sudo apt-get install python-pip python-dev libyaml-dev
 sudo pip install librato-metrics
 sudo pip install pyyaml
+sudo pip install requests
 ```
 
 2) create `config.yaml` with [libratro](https://www.librato.com) credentials:
