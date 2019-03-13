@@ -3,6 +3,9 @@ prefix: office.floor4.kitchen
 user: foo@bar.com
 token: 'sometoken'
 
+api:
+	url: 'http://neki.com'
+
 slack:
     webhook: 'https://hooks.slack.com/services/TXXXXXX/XXXXXX/xxxxxxx'
     channel: '#general'
