@@ -54,11 +54,6 @@ def publish(co2, temp):
         })
     except:
         print "Unexpected error:", sys.exc_info()[0]
-    # try:
-    #     client.submit(prefix + ".co2", co2)
-    #     client.submit(prefix + ".tmp", tmp)
-    # except:
-    #     print "Unexpected error:", sys.exc_info()[0]
 
 def config(config_file=None):
     """Get config from file; if no config_file is passed in as argument
@@ -74,6 +69,8 @@ def config(config_file=None):
 # def client(config):
     # return librato.connect(config["user"], config["token"])
 
+
+# monitor.py /dev/hidraw0 [ **optional:** /home/pi/office_weather/my_config.yaml ]
 
 if __name__ == "__main__":
     """main"""
