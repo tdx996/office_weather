@@ -47,6 +47,7 @@ def now():
     return int(time.time())
 
 def publish(co2, temp):
+    print "Trying to connect to ", config['api']['url']
     try:
         response = requests.post(config['api']['url'], data={
             'co2': co2,
