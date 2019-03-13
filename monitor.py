@@ -3,7 +3,7 @@
 # based on code by henryk ploetz
 # https://hackaday.io/project/5301-reverse-engineering-a-low-cost-usb-co-monitor/log/17909-all-your-base-are-belong-to-us
 
-import os, sys, fcntl, time, librato, yaml, socket
+import os, sys, fcntl, time, yaml, socket
 
 import requests
 
@@ -71,8 +71,8 @@ def config(config_file=None):
     with open(config_file, 'r') as stream:
         return yaml.load(stream)
 
-def client(config):
-    return librato.connect(config["user"], config["token"])
+# def client(config):
+    # return librato.connect(config["user"], config["token"])
 
 
 if __name__ == "__main__":
